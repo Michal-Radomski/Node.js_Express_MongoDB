@@ -1,0 +1,16 @@
+{
+  "name": "03-projekt_api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node index.ts",
+    "nodemon": "nodemon index.ts"
+  },
+  "author": "Mich_Rad <michalra@op.pl>",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^4.6.3"
+  }
+}
