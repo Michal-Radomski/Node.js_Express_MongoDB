@@ -10,3 +10,4 @@ console.log(colors.trap("Run the trap")); // Drops the bass
 // console.log("colors: ", colors);
 
 console.log("Jestem w module app");
+console.log("Nodemon was added and is being used");
