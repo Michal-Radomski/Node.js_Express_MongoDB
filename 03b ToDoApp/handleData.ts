@@ -73,4 +73,5 @@ const handleData = (type: number, title: string | null) => {
   }
 };
 
-module.exports = handleData;
+// module.exports = handleData;
+export default handleData;

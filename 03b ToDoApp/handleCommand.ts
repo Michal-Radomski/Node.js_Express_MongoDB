@@ -1,3 +1,6 @@
+import handleData from "./handleData";
+const colors = require("colors/safe");
+
 const handleCommand = ({add, remove, list}: {add: string; remove: string; list: string}) => {
   // console.log(add, remove, list);
   if (add) {
@@ -24,4 +27,5 @@ const handleCommand = ({add, remove, list}: {add: string; remove: string; list: 
   }
 };
 
-module.exports = handleCommand;
+// module.exports = handleCommand;
+export default handleCommand;
