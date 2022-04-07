@@ -23,3 +23,5 @@ const handleCommand = ({add, remove, list}: {add: string; remove: string; list: 
     );
   }
 };
+
+module.exports = handleCommand;

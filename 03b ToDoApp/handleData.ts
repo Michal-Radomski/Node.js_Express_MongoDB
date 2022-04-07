@@ -1,3 +1,6 @@
+const colors = require("colors/safe");
+const fs = require("fs");
+
 const handleData = (type: number, title: string | null) => {
   // type - number (1 - add, 2 - remove, 3 - list)
   // const data = fs.readFileSync("dataDB.json", "utf8"); //* Może być data=data.toString(); niżej to samo!
@@ -69,3 +72,5 @@ const handleData = (type: number, title: string | null) => {
       break;
   }
 };
+
+module.exports = handleData;
