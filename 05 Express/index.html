@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="express.js" />
+    <meta name="author" content="np. MichRad" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-Ua-Compatible" content="IE=edge,chrome=1" />
+    <title>Express.js Course</title>
+
+    <style>
+      body {
+        background-color: powderblue;
+      }
+      * {
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="">
+      Imię: <br />
+      <input type="text" id="nameInput" /><br />
+      Nazwisko: <br />
+      <input type="text" id="surnameInput" /><br />
+      <button type="submit">Wygeneruj Odnośnik</button>
+    </form>
+
+    <a href="">Jestem Odnośnikiem!</a>
+
+    <script>
+      console.log("test");
+      const nameInput = document.querySelector("#nameInput");
+      const surnameInput = document.querySelector("#surnameInput");
+      const form = document.querySelector("form");
+      const a = document.querySelector("a");
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const name = nameInput.value;
+        const surname = surnameInput.value;
+        // const url = `http://localhost:3000/?name=${encodeURIComponent(name)}&surname=${encodeURIComponent(surname)}`;
+
+        const params = new URLSearchParams({
+          name: name,
+          surname: surname,
+        });
+
+        const url = `http://localhost:3000/?` + params;
+        a.setAttribute("href", url);
+      });
+
+      // const name = "Jakaś Osoba";
+      // const surname = "Testowa";
+    </script>
+  </body>
+</html>

@@ -8,7 +8,16 @@ const port = 3000;
 app.get(
   "/",
   (
-    req: {hostname: string; ip: string; ips: string; originalUrl: string; path: string; protocol: string; secure: boolean},
+    req: {
+      hostname: string;
+      ip: string;
+      ips: string;
+      originalUrl: string;
+      path: string;
+      protocol: string;
+      secure: boolean;
+      query: {name: string; surname: string};
+    },
     res: {send: (arg0: string) => void}
   ) => {
     console.log("req.hostname:", req.hostname);
@@ -18,6 +27,9 @@ app.get(
     console.log("req.path:", req.path);
     console.log("req.protocol:", req.protocol);
     console.log("req.secure:", req.secure);
+    console.log("req.query:", req.query);
+    const {name, surname} = req.query;
+    console.log(`Hello ${name} ${surname}`);
     res.send("<h1>Hello World!</h1>");
     if (req.protocol !== "https") {
       console.log("Protokół niezabezpieczony");
