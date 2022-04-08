@@ -1,4 +1,6 @@
 const express = require("express");
+const path = require("path");
+
 const app = express();
 
 // console.log("app:", app);
@@ -68,4 +70,26 @@ app.listen(port, "localhost", () => {
 // });
 app.get("/article/:id/:tile?", (req: {params: string}) => {
   console.log("req.params:", req.params);
+});
+
+//* Przesyłanie plików
+app.get("/moon", (_req: any, res: {send: (arg0: string) => void}) => {
+  res.send(`
+  <!DOCTYPE html>
+  <html>
+  <body>
+  <img src="/picture" width="100%"/>
+  </body>
+  </html>
+  
+  `);
+});
+
+app.get("/picture", (_req: any, res: any) => {
+  const fileName = path.join(__dirname, "Moon_4.jpg"); //* Plikiem może być index.html
+  res.sendFile(fileName, {
+    root: path.join(__dirname, "image"),
+    lastModified: false,
+    dotfiles: "ignore",
+  });
 });
