@@ -73,23 +73,43 @@ app.get("/article/:id/:tile?", (req: {params: string}) => {
 });
 
 //* Przesyłanie plików
-app.get("/moon", (_req: any, res: {send: (arg0: string) => void}) => {
+app.get("/moon", (_req: any, res: {set: (arg0: string, arg1: string) => void; send: (arg0: string) => void}) => {
+  res.set("Content-Type", "text/html");
   res.send(`
   <!DOCTYPE html>
   <html>
   <body>
-  <img src="/picture" width="100%"/>
+  <img src="picture" width="100%"/>
   </body>
   </html>
   
   `);
 });
 
-app.get("/picture", (_req: any, res: any) => {
-  const fileName = path.join(__dirname, "Moon_4.jpg"); //* Plikiem może być index.html
-  res.sendFile(fileName, {
-    root: path.join(__dirname, "image"),
-    lastModified: false,
-    dotfiles: "ignore",
-  });
-});
+app.get(
+  "/picture",
+  (_req: any, res: {sendFile: (arg0: string, arg1: {root: any; lastModified: boolean; dotfiles: string}) => void}) => {
+    const fileName = "Moon_4.jpg"; //* Plikiem może być index.html
+    res.sendFile(fileName, {
+      root: path.join(__dirname, "image"),
+      lastModified: false,
+      dotfiles: "ignore",
+    });
+  }
+);
+
+app.get(
+  "/hi/:name",
+  (
+    req: {params: {name: string}},
+    res: {cookie: (arg0: string, arg1: string, arg2: {expires: Date}) => void; send: (arg0: string) => void}
+  ) => {
+    const {name} = req.params;
+    res.cookie("visitor_name", name, {
+      expires: new Date(Date.now() + 10 * 60 * 1000), //* cookie will be removed after 10 minutes
+    });
+    res.send(
+      `<h2 style='color: darkMagenta'>Imię: <span style='font-weight: bolder; font-style: italic; color: red; text-decoration: underline;'>${name}</span> zapisano</h2>`
+    );
+  }
+);
