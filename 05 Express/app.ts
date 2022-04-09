@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const cookieParser = require("cookie-parser");
 
 const app = express();
 
@@ -98,10 +99,28 @@ app.get(
   }
 );
 
+//* Middleware
+
+//* Nie działa?
+app.use(express.json());
+app.post("/hello", (req: {body: {name2: string; surname2: string}}, res: {send: (arg0: string) => void}) => {
+  const {name2, surname2} = req.body;
+  res.send(`Witaj ${name2} ${surname2}`);
+  console.log("req.body:", req.body);
+});
+
+//* Middleware nr 2
+app.use(express.static(path.join(__dirname, "image")));
+
+//* Middleware nr 3 -> cookie-parser
+app.use(cookieParser());
+
+// ---------------------
+
 app.get(
   "/hi/:name",
   (
-    req: {params: {name: string}},
+    req: {params: {name: string}; cookies: string},
     res: {cookie: (arg0: string, arg1: string, arg2: {expires: Date}) => void; send: (arg0: string) => void}
   ) => {
     const {name} = req.params;
@@ -111,5 +130,6 @@ app.get(
     res.send(
       `<h2 style='color: darkMagenta'>Imię: <span style='font-weight: bolder; font-style: italic; color: red; text-decoration: underline;'>${name}</span> zapisano</h2>`
     );
+    console.log("req.cookies:", req.cookies);
   }
 );
