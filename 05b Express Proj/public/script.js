@@ -6,8 +6,8 @@ const question = document.querySelector("#question");
 // const answer3 = document.querySelector("#answer3");
 // const answer4 = document.querySelector("#answer4");
 
-// const gameBoard = document.querySelector('#game-board');
-// const h2 = document.querySelector('h2');
+const gameBoard = document.querySelector("#game-board");
+const h2 = document.querySelector("h2");
 
 function fillQuestionElements(data) {
   if (data.winner === true) {
@@ -45,34 +45,33 @@ function showNextQuestion() {
 
 showNextQuestion();
 
-// const goodAnswersSpan = document.querySelector('#good-answers');
+const goodAnswersSpan = document.querySelector("#good-answers");
 
-// function handleAnswerFeedback(data) {
-//     goodAnswersSpan.innerText = data.goodAnswers;
-//     showNextQuestion();
-// }
+function handleAnswerFeedback(data) {
+  goodAnswersSpan.innerText = data.goodAnswers;
+  showNextQuestion();
+}
 
-// function sendAnswer(answerIndex) {
-//     fetch(`/answer/${answerIndex}`, {
-//         method: 'POST',
-//     })
-//         .then(r => r.json())
-//         .then(data => {
-//             handleAnswerFeedback(data);
-//         });
-// }
+function sendAnswer(answerIndex) {
+  fetch(`/answer/${answerIndex}`, {
+    method: "POST",
+  })
+    .then((resp) => resp.json())
+    .then((data) => {
+      console.log("data:", data);
+      handleAnswerFeedback(data);
+    });
+}
 
-// const buttons = document.querySelectorAll('.answer-btn');
-// for (const button of buttons) {
-
-//     button.addEventListener('click', (event) => {
-
-//         const answerIndex = event.target.dataset.answer;
-//         sendAnswer(answerIndex);
-
-//     });
-
-// }
+const buttons = document.querySelectorAll(".answer-btn");
+for (const button of buttons) {
+  button.addEventListener("click", (event) => {
+    console.log("Button wciśnięty");
+    const answerIndex = event.target.dataset.answer;
+    console.log("answerIndex:", answerIndex);
+    sendAnswer(answerIndex);
+  });
+}
 
 // const tipDiv = document.querySelector('#tip');
 
@@ -80,15 +79,16 @@ showNextQuestion();
 //     tipDiv.innerText = data.text;
 // }
 
-// function callToAFriend() {
-//     fetch('/help/friend', {
-//         method: 'GET',
-//     })
-//         .then(r => r.json())
-//         .then(data => {
-//             handleFriendsAnswer(data);
-//         });
-// }
+function callToAFriend() {
+  fetch("/help/friend", {
+    method: "GET",
+  })
+    .then((repr) => repr.json())
+    .then((data) => {
+      console.log("data:", data);
+      handleFriendsAnswer(data);
+    });
+}
 
 // document.querySelector('#callToAFriend').addEventListener('click', callToAFriend);
 

@@ -1,7 +1,8 @@
 import {Request, Response} from "express";
 
-function gameRoutes(app: {get: (arg0: string, arg1: (_req: Request, res: Response) => void) => void}) {
+function gameRoutes(app: any) {
   let goodAnswers: number = 0;
+  let isGameOver: boolean = false;
   let callToAFriend: boolean = false;
   let questionToTheCrowdUsed: boolean = false;
   let fiftyFifty: boolean = false;
@@ -39,4 +40,33 @@ function gameRoutes(app: {get: (arg0: string, arg1: (_req: Request, res: Respons
       });
     }
   });
+
+  app.post("/answer/:index", (req: Request, res: Response) => {
+    if (isGameOver) {
+      res.json({
+        loser: true,
+      });
+    }
+
+    const {index} = req.params;
+    console.log("index:", index);
+
+    const question = questions[goodAnswers];
+
+    const isGoodAnswer = question.correctAnswer === Number(index);
+    console.log("isGoodAnswer:", isGoodAnswer);
+
+    if (isGoodAnswer) {
+      goodAnswers++;
+    } else {
+      isGameOver = true;
+    }
+
+    res.json({
+      correct: isGoodAnswer,
+      goodAnswers: goodAnswers,
+    });
+  });
 }
+
+module.exports = gameRoutes;
