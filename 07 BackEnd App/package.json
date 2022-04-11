@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "export NODE_OPTIONS='--trace-deprecation --abort-on-uncaught-exception' && export NODE_ENV=development && nodemon --exec ts-node ./bin/www.ts",
+    "scss": "sass --watch src/public/stylesheets/style.scss src/public/stylesheets/style.css",
+    "start": "export NODE_OPTIONS='--trace-deprecation --abort-on-uncaught-exception' && export NODE_ENV=development && nodemon --exec ts-node ./bin/www.ts & npm run scss",
     "build": "sh etc/build.sh"
   },
   "dependencies": {
@@ -15,19 +16,20 @@
     "module-alias": "^2.2.2",
     "morgan": "~1.9.1",
     "pug": "2.0.0-beta11",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "sass": "^1.50.0"
   },
   "devDependencies": {
-    "@types/node": "^16.10.2",
+    "@tsconfig/node16": "^1.0.0",
     "@types/cookie-parser": "^1.4.2",
     "@types/debug": "^4.1.7",
     "@types/express": "^4.17.13",
     "@types/http-errors": "^1.8.1",
     "@types/morgan": "^1.9.3",
+    "@types/node": "^16.10.2",
     "nodemon": "^2.0.15",
     "ts-node": "^10.2.1",
-    "typescript": "^4.4.3",
-    "@tsconfig/node16": "^1.0.0"
+    "typescript": "^4.4.3"
   },
   "_moduleAliases": {
     "@": "./src"
