@@ -1,27 +1,31 @@
 doctype html
 
 mixin item(title, url)
-  li
-    a(href=url)=title
+  li(class="listClass")
+    a(href=url class=`${path==url ? 'active': ""} otherClass`)=title
 
 html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    ul
-      //- li
-      //-   a(href="/") Strona Główna
-      //- li
-      //-   a(href="/news") Aktualności
-      //- li
-      //-   a(href="/quiz") Quiz
-      //- li
-      //-   a(href="/admin") Dla Admina
-      //* To samo co wyżej ale za pomocą mixin'a
-      +item("Strona Główna", "/")
-      +item("Aktualności", "/news")
-      +item("Quiz", "/quiz")
-      +item("Dla Admina", "/admin")
+    p Aktualna ścieżka: 
+      span=path
+    
+    nav
+      ul
+        //- li
+        //-   a(href="/") Strona Główna
+        //- li
+        //-   a(href="/news") Aktualności
+        //- li
+        //-   a(href="/quiz") Quiz
+        //- li
+        //-   a(href="/admin") Dla Admina
+        //* To samo co wyżej ale za pomocą mixin'a
+        +item("Strona Główna", "/")
+        +item("Aktualności", "/news")
+        +item("Quiz", "/quiz")
+        +item("Dla Admina", "/admin")
 
     block contentBlock

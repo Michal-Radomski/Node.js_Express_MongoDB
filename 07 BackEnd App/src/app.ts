@@ -31,6 +31,12 @@ class App {
     this.app.use(express.urlencoded({extended: false}));
     this.app.use(cookieParser());
     this.app.use(express.static(path.join(__dirname, "public")));
+
+    this.app.use(function (req, res, next) {
+      console.log("req.path:", req.path);
+      res.locals.path = req.path;
+      next();
+    });
   }
 
   private routerSetup() {

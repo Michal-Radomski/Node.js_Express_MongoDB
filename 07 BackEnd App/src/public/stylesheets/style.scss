@@ -6,8 +6,27 @@ body {
 
 a {
   color: #00b7ff;
+  &:hover {
+    color: darkmagenta;
+  }
 }
 
 span {
   color: red;
+}
+
+.active {
+  font-weight: bolder;
+  color: darkblue;
+}
+
+.listClass {
+  background-color: whitesmoke;
+  list-style-type: none; /* Remove bullets */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margins */
+}
+
+.otherClass {
+  font-style: italic;
 }
