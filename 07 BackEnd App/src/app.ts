@@ -1,5 +1,5 @@
 import createError from "http-errors";
-
+import cookieSession from "cookie-session";
 import express, {RequestHandler, ErrorRequestHandler} from "express";
 import path from "path";
 import cookieParser from "cookie-parser";
@@ -10,6 +10,9 @@ import indexRouter from "./routes/index";
 import newsRouter from "./routes/news";
 import quizRouter from "./routes/quiz";
 import adminRouter from "./routes/admin";
+
+// let config = require("./config") //* stary system module.exports
+import {config} from "./config";
 
 class App {
   public app: express.Application;
@@ -31,6 +34,14 @@ class App {
     this.app.use(express.urlencoded({extended: false}));
     this.app.use(cookieParser());
     this.app.use(express.static(path.join(__dirname, "public")));
+
+    this.app.use(
+      cookieSession({
+        name: "session",
+        keys: config.keySession,
+        maxAge: config.maxAge,
+      })
+    );
 
     this.app.use(function (req, res, next) {
       console.log("req.path:", req.path);
