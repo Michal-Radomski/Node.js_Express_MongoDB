@@ -11,3 +11,5 @@ jspm_packages/
 
 # My Entries:
 .vscode/
+config.ts
+
