@@ -4,6 +4,7 @@ import express, {RequestHandler, ErrorRequestHandler} from "express";
 import path from "path";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
+import mongoose from "mongoose";
 
 import indexRouter from "./routes/index";
 // import usersRouter from './routes/users';
@@ -13,6 +14,16 @@ import adminRouter from "./routes/admin";
 
 // let config = require("./config") //* stary system module.exports
 import {config} from "./config";
+
+mongoose.connect(config.db, {
+  connectTimeoutMS: 10000,
+});
+
+let db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error:"));
+db.once("open", function () {
+  console.log("DB connection done");
+});
 
 class App {
   public app: express.Application;
