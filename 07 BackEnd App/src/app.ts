@@ -11,6 +11,7 @@ import indexRouter from "./routes/index";
 import newsRouter from "./routes/news";
 import quizRouter from "./routes/quiz";
 import adminRouter from "./routes/admin";
+import apiRouter from "./routes/api";
 
 // let config = require("./config") //* stary system module.exports
 import {config} from "./config";
@@ -67,6 +68,7 @@ class App {
     this.app.use("/news", newsRouter);
     this.app.use("/quiz", quizRouter);
     this.app.use("/admin", adminRouter);
+    this.app.use("/api", apiRouter);
   }
 
   private errorHandler() {
