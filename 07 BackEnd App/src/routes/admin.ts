@@ -1,7 +1,7 @@
 import express from "express";
 var router = express.Router();
-const News = require("../../models/news");
-// import News from "../../models/news";
+// const News = require("../../models/news");
+import News from "../../models/news";
 
 // console.log("News:", News);
 
