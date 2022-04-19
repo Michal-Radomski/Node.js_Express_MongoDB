@@ -1,4 +1,5 @@
-const express = require("express");
+// const express = require("express");
+import express from "express";
 
 const app = express();
 
@@ -31,4 +32,5 @@ app.get("*", (_req, res) => {
 //   res.status(500).send("Something broke!");
 // });
 
-exports.app = app;
+// exports.app = app;
+export default app;
