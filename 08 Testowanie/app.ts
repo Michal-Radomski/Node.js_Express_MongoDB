@@ -1,27 +1,28 @@
-// const express = require("express");
-import express from "express";
+const express = require("express");
+// import express from "express";
+import {Request, Response} from "express";
 
 const app = express();
 
 app.set("x-powered-by", false);
 
-app.get("/", (req, res) => {
+app.get("/", (req: Request, res: Response) => {
   console.log("req.ip:", req.ip);
   // res.send("Hello World!");
   res.send("<h1>Hello World!</h1>");
 });
 
-app.post("/", (_req, res) => {
+app.post("/", (_req: Request, res: Response) => {
   res.send(`Create`);
 });
-app.put("/:id", (req, res) => {
+app.put("/:id", (req: Request, res: Response) => {
   res.send(`Change: ${req.params.id}`);
 });
-app.delete("/:id", (req, res) => {
+app.delete("/:id", (req: Request, res: Response) => {
   res.send(`Delete: ${req.params.id}`);
 });
 
-app.get("*", (_req, res) => {
+app.get("*", (_req: Request, res: Response) => {
   res.status(404);
   res.send("Not Found");
 });

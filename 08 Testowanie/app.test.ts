@@ -18,7 +18,9 @@ describe("adds 3/4 and 3/4", () => {
 });
 
 const request = require("supertest");
-const {app} = require("./app.js");
+// const {app} = require("./app.js");
+// const app = require("./app");
+import app from "./app";
 
 // it("works", () => {
 //   const response = request(app).get("/");
@@ -68,7 +70,13 @@ it("works", async () => {
   expect(response.text).toEqual("<h1>Hello World!</h1>");
 });
 
-it.skip("handles pages that are not found", async () => {
+// it.skip("handles pages that are not found", async () => {
+//   const response = await request(app).get("/whatever");
+//   expect(response.status).toEqual(404);
+//   expect(response.text).toMatchSnapshot();
+//   expect(response.text).toEqual("Not Found");
+// });
+it("handles pages that are not found", async () => {
   const response = await request(app).get("/whatever");
   expect(response.status).toEqual(404);
   expect(response.text).toMatchSnapshot();
