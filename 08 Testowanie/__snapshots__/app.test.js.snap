@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`handles pages that are not found 1`] = `"Not Found"`;

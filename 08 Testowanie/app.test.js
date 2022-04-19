@@ -6,6 +6,17 @@
 //   expect(2 + 2).toEqual(3);
 // });
 
+describe("adds 3/4 and 3/4", () => {
+  test("test1", () => {
+    console.log("test1");
+    expect(3 + 3).toEqual(6);
+  });
+  test("test2", () => {
+    console.log("test2");
+    expect(4 + 4).toEqual(8);
+  });
+});
+
 const request = require("supertest");
 const {app} = require("./app.js");
 
@@ -55,4 +66,11 @@ it("works", async () => {
   // console.log("response:", response);
   expect(response.status).toEqual(200);
   expect(response.text).toEqual("<h1>Hello World!</h1>");
+});
+
+it("handles pages that are not found", async () => {
+  const response = await request(app).get("/whatever");
+  expect(response.status).toEqual(404);
+  expect(response.text).toMatchSnapshot();
+  expect(response.text).toEqual("Not Found");
 });
